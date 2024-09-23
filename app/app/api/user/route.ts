@@ -11,22 +11,26 @@ export async function GET(request: Request) {
   }
 
   try {
-    const { data, error } = await supabase
+    const { data: userData, error } = await supabase
       .from("users")
-      .select("*")
+      .select("*, rewards(*)")
       .eq("u_id", userId)
       .single();
 
     if (error) throw error;
 
-    if (!data) {
+    if (!userData) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
+    const { rewards, ...user } = userData;
 
     return NextResponse.json({
       code: 200,
       message: "User fetched successfully",
-      data,
+      data: {
+        user,
+        rewards,
+      },
     });
   } catch (error) {
     return NextResponse.json(

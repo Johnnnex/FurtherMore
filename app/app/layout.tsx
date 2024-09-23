@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import localFont from "next/font/local";
 import Skeleton from "@/components/Skeleton";
 import useUserEndpoints from "@/hooks/useUserEndpoints";
+import useRewardStore from "@/store/rewardStore";
 const sfPro = localFont({
   src: "../fonts/SF-Pro-Rounded-Regular.otf",
   display: "swap",
@@ -18,6 +19,8 @@ export default function RootLayout({
 }>) {
   const [isLoading, setIsLoading] = useState(true);
   const { checkUserExists } = useUserEndpoints();
+  const startTime = useRewardStore((state) => state.startTime);
+  const setTimeSpent = useRewardStore((state) => state.setTimeSpent);
 
   useEffect(() => {
     const fetchUser = () => {
@@ -39,6 +42,35 @@ export default function RootLayout({
 
     fetchUser();
   }, []);
+
+  useEffect(() => {
+    if (!startTime) return;
+
+    // Update the time spent every second
+    const interval = setInterval(() => {
+      const currentTime = Date.now();
+      setTimeSpent(Math.floor((currentTime - startTime) / 1000));
+    }, 1000);
+
+    const handleBeforeUnload = async () => {
+      const endTime = Date.now();
+      const totalTimeSpent = Math.floor((endTime - startTime) / 1000);
+      console.log(totalTimeSpent);
+
+      // Send the total time spent to the backend via API route
+      // await axios.post("/api/save-time-spent", { timeSpent: totalTimeSpent });
+    };
+
+    // Listen for the beforeunload event to save time when the user leaves the app or refreshes the page
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Clean up the interval and event listener when the component unmounts
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [startTime]);
+
   return (
     <html lang="en">
       <head>
