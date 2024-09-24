@@ -5,8 +5,10 @@ import useUserStore from "@/store/userStore";
 import { Button } from "@/components/Button";
 import useUserEndpoints from "@/hooks/useUserEndpoints";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Welcome = () => {
+  const { replace } = useRouter();
   const { updateUser } = useUserEndpoints();
   const user = useUserStore((state) => state.user);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -14,6 +16,7 @@ const Welcome = () => {
   const handleClick = async () => {
     setIsButtonDisabled(true);
     await updateUser(user?.u_id);
+    replace("/dapp");
     setIsButtonDisabled(false);
   };
 

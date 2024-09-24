@@ -25,7 +25,6 @@ const useUserEndpoints = () => {
   };
 
   const updateUser = async (userId: number = 5085480202) => {
-    console.log("Updating user:", userId);
     try {
       const response = await axios.patch("/api/user", null, {
         params: { userId },
@@ -35,7 +34,7 @@ const useUserEndpoints = () => {
       if (data.code === 200) {
         console.log("User updated successfully:", data.data);
         userStore.setUser(data.data.user);
-        rewardStore.setPoints(data.data.rewards.points);
+        rewardStore.setPoints(data.data.rewards.points * 0.00025);
 
         return true;
       } else {

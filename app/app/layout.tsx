@@ -28,19 +28,15 @@ export default function RootLayout({
 
   useEffect(() => {
     const fetchUser = () => {
-      if (
-        typeof window !== "undefined" &&
-        "Telegram" in window &&
-        window.Telegram &&
-        "WebApp" in window?.Telegram
-      ) {
-        window.Telegram.WebApp?.ready();
-        const userData = window.Telegram.WebApp?.initDataUnsafe?.user;
-        checkUserExists(userData?.id as number, (status) => {
-          if (status) {
-            setIsLoading(false);
-          }
-        });
+      const telegramWebApp = window?.Telegram?.WebApp;
+      if (telegramWebApp) {
+        telegramWebApp.ready();
+        const userId = telegramWebApp.initDataUnsafe?.user?.id;
+        if (userId) {
+          checkUserExists(userId, (status) => {
+            if (status) setIsLoading(false);
+          });
+        }
       }
     };
 
