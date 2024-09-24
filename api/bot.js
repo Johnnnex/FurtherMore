@@ -54,7 +54,7 @@ Open the app to check your points and available rewards\\!`;
             {
               text: "Open Furthermore App",
               web_app: {
-                url: "https://Furthermore-two.vercel.app/",
+                url: "https://further-more.vercel.app/",
               },
             },
           ],
@@ -138,7 +138,7 @@ Open the app to check your points and available rewards\\!`;
                 {
                   text: "Launch Furthermore",
                   web_app: {
-                    url: "https://Furthermore-two.vercel.app/",
+                    url: "https://further-more.vercel.app/",
                   },
                 },
               ],
@@ -241,7 +241,7 @@ bot.onText(/\/rewards/, async (msg) => {
               {
                 text: "Launch Furthermore",
                 web_app: {
-                  url: "https://Furthermore-two.vercel.app/",
+                  url: "https://further-more.vercel.app/",
                 },
               },
             ],

@@ -13,12 +13,14 @@ const footerProps = [
   {
     name: "Leaderboard",
     icon: "/svg/ranking.svg",
-    href: "/leaderboard",
+    // href: "/leaderboard",
+    href: "/dapp",
   },
   {
     name: "Frens",
     icon: "/svg/user-group.svg",
-    href: "/referral",
+    // href: "/referral",
+    href: "/dapp",
   },
 ];
 

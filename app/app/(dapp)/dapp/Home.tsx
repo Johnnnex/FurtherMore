@@ -25,7 +25,7 @@ const Home = () => {
           </div>
         </div>
         <figure className="w-fit mx-auto">
-          <img src="/svg/time.svg" alt="time logo" />
+          <img src="/svg/time.svg" style={{ height: "50vh" }} alt="time logo" />
         </figure>
         {!startTime ? (
           <Button

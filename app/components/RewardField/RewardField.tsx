@@ -21,7 +21,9 @@ const RewardButton = () => {
       </div>
       <div className="flex items-center gap-[4px]">
         <SVGClient style={{ color: "currentColor" }} src="/svg/coin-3.svg" />
-        <p className="text-[14px] font-normal leading-[24px]">0.25 per hour</p>
+        <p className="text-[14px] font-normal leading-[24px]">
+          0.00025 per hour
+        </p>
       </div>
     </section>
   );
@@ -30,7 +32,7 @@ const RewardButton = () => {
 const RewardField = () => {
   const points = useRewardStore((state) => state.points);
   const timeSpent = useRewardStore((state) => state.timeSpent);
-  return points + (timeSpent ? timeSpent * 0.25 : 0);
+  return points + Math.round((timeSpent as number) * 0.00025);
 };
 
 export { RewardButton, RewardField };
