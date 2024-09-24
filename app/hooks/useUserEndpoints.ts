@@ -34,7 +34,7 @@ const useUserEndpoints = () => {
       if (data.code === 200) {
         console.log("User updated successfully:", data.data);
         userStore.setUser(data.data.user);
-        rewardStore.setPoints(data.data.rewards.points * 0.00025);
+        rewardStore.setPoints(data.data.rewards.points);
 
         return true;
       } else {

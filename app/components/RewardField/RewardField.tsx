@@ -32,7 +32,7 @@ const RewardButton = () => {
 const RewardField = () => {
   const points = useRewardStore((state) => state.points);
   const timeSpent = useRewardStore((state) => state.timeSpent);
-  return points + Math.round((timeSpent as number) * 0.00025);
+  return Math.round(points + (timeSpent as number) * 0.00025);
 };
 
 export { RewardButton, RewardField };
