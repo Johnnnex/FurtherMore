@@ -32,7 +32,6 @@ const useUserEndpoints = () => {
       const data = response.data as INextResponse<IUserResponse>;
 
       if (data.code === 200) {
-        console.log("User updated successfully:", data.data);
         userStore.setUser(data.data.user);
         rewardStore.setPoints(data.data.rewards.points);
 

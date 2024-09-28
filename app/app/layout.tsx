@@ -89,21 +89,7 @@ export default function RootLayout({
           margin: 0,
         }}
       >
-        {/* <div>
-          <h1>Welcome to the App!</h1>
-          {user ? (
-            <div>
-              <p>User ID: {user.id}</p>
-              <p>First Name: {user.first_name}</p>
-              <p>Last Name: {user.last_name}</p>
-              <p>Username: {user.username}</p>
-              <p>Language Code: {user.language_code}</p>
-            </div>
-          ) : (
-            <p>Loading user information...</p>
-          )}
-        </div> */}
-        <main className="h-full bg-[url('/svg/texture.svg')] bg-cover bg-center">
+        <main className="h-full bg-cover bg-center">
           {isLoading ? <Skeleton /> : children}
         </main>
       </body>

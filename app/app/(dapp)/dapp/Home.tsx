@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { Button } from "@/components/Button";
+import Clock from "@/components/Clock";
 import { RewardButton, RewardField } from "@/components/RewardField";
 import SVGClient from "@/components/SVGClient";
 import useRewardStore from "@/store/rewardStore";
@@ -24,9 +25,7 @@ const Home = () => {
             </p>
           </div>
         </div>
-        <figure className="w-fit mx-auto">
-          <img src="/svg/time.svg" style={{ height: "50vh" }} alt="time logo" />
-        </figure>
+        <Clock />
         {!startTime ? (
           <Button
             name="Start Calculating"
