@@ -24,6 +24,7 @@ export default function RootLayout({
   const { updateRewards } = useRewardsEndpoints();
   const startTime = useRewardStore((state) => state.startTime);
   const setTimeSpent = useRewardStore((state) => state.setTimeSpent);
+  const points = useRewardStore((state) => state.points);
   const user = useUserStore((state) => state.user);
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function RootLayout({
     const handleBeforeUnload = async () => {
       const endTime = Date.now();
       const totalTimeSpent = Math.floor((endTime - startTime) / 1000);
-      updateRewards(user?.u_id as number, totalTimeSpent);
+      updateRewards(user?.u_id as number, totalTimeSpent + points);
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
