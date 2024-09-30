@@ -56,7 +56,7 @@ export default function RootLayout({
       const currentTime = Date.now();
       const totalTimeSpent = Math.floor((currentTime - startTime) / 1000);
       updateRewards(user?.u_id as number, totalTimeSpent);
-    }, 30 * 60 * 1000);
+    }, 5 * 60 * 1000);
 
     const handleBeforeUnload = async () => {
       const endTime = Date.now();
