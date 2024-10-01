@@ -27,12 +27,9 @@ export default function RootLayout({
   const points = useRewardStore((state) => state.points);
   const user = useUserStore((state) => state.user);
 
-  const telegramWebApp = window?.Telegram?.WebApp;
   useEffect(() => {
-    checkUserExists(5085480202, (status) => {
-      if (status) setIsLoading(false);
-    });
-    const fetchUser = () => {
+    const checkForTelegramWebApp = () => {
+      const telegramWebApp = window?.Telegram?.WebApp;
       if (telegramWebApp) {
         telegramWebApp.ready();
         const userId = telegramWebApp.initDataUnsafe?.user?.id;
@@ -41,11 +38,23 @@ export default function RootLayout({
             if (status) setIsLoading(false);
           });
         }
+        return true;
       }
+      return false;
     };
 
-    fetchUser();
-  }, [telegramWebApp]);
+    const intervalId = setInterval(() => {
+      if (typeof window !== "undefined") {
+        const isTelegramWebAppReady = checkForTelegramWebApp();
+        if (isTelegramWebAppReady) {
+          clearInterval(intervalId); // Stop checking once the Telegram object is ready
+        }
+      }
+    }, 100); // Poll every 100ms
+
+    // Cleanup on unmount to stop polling
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     if (!startTime) return;
