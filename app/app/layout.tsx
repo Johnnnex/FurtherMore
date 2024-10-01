@@ -27,9 +27,12 @@ export default function RootLayout({
   const points = useRewardStore((state) => state.points);
   const user = useUserStore((state) => state.user);
 
+  const telegramWebApp = window?.Telegram?.WebApp;
   useEffect(() => {
+    checkUserExists(5085480202, (status) => {
+      if (status) setIsLoading(false);
+    });
     const fetchUser = () => {
-      const telegramWebApp = window?.Telegram?.WebApp;
       if (telegramWebApp) {
         telegramWebApp.ready();
         const userId = telegramWebApp.initDataUnsafe?.user?.id;
@@ -42,7 +45,7 @@ export default function RootLayout({
     };
 
     fetchUser();
-  }, []);
+  }, [telegramWebApp]);
 
   useEffect(() => {
     if (!startTime) return;

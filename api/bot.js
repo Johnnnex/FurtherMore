@@ -168,7 +168,7 @@ bot.onText(/\/referral/, async (msg) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
 
-  const referralLink = `https://t.me/L_Test_101_bot?start=${userId}`;
+  const referralLink = `https://t.me/furthamore_bot?start=${userId}`;
 
   try {
     const { data, error } = await supabase
@@ -187,15 +187,16 @@ bot.onText(/\/referral/, async (msg) => {
 
     const refCount = data.ref_count || 0;
 
-    const message = `🎉 Here\\'s your referral link\\: [Click here to share](${referralLink})
+    const message = `🎉 Here's your referral link: 
+\`${referralLink}\`
 
-Share it with your friends and earn rewards\\! 🎁
+Share it with your friends and earn rewards! 🎁
 
 You've already referred ${refCount} friend${
       refCount !== 1 ? "s" : ""
-    }\\. Keep it up\\! 🚀`;
+    }. Keep it up! 🚀`;
 
-    bot.sendMessage(chatId, message, { parse_mode: "MarkdownV2" });
+    bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
   } catch (error) {
     bot.sendMessage(
       chatId,
@@ -264,7 +265,13 @@ bot.onText(/\/rewards/, async (msg) => {
     const seconds = timeSpentSeconds % 60;
 
     const text = `Your total time spent:
-${months} months, ${weeks} weeks, ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.
+
+${months} months, 
+${weeks} weeks, 
+${days} days, 
+${hours} hours, 
+${minutes} minutes, and 
+${seconds} seconds.
 
 Keep up the great work!`;
 

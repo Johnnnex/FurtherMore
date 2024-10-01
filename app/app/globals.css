@@ -179,3 +179,37 @@
   display: inline-block;
   transform: rotate(calc(-30deg * var(--i)));
 }
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.conic-nav-bg {
+  background-image: conic-gradient(
+    from var(--angle),
+    transparent,
+    transparent,
+    #e5980a59,
+    #e5980a60,
+    #e5980a60,
+    #e5980a60,
+    #e5980a59,
+    transparent,
+    transparent
+  );
+}
+
+.conic-nav-bg:hover,
+.conic-nav-bg:focus {
+  animation: 1s spin linear infinite;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}

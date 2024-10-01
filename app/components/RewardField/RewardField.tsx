@@ -5,7 +5,7 @@ const RewardButton = () => {
   const timeSpent = useRewardStore((state) => state.timeSpent);
 
   return (
-    <section className="p-[20px_16px] text-white animate-fade-in border justify-between flex items-center rounded-[18px] w-[90%] mx-auto">
+    <section className="p-[20px_16px] text-white animate-fade-in border-2 flex justify-between border-[rgba(229,152,10,0.35)] rounded-[18px] w-[90%] mx-auto bg-[rgba(255,255,255,0.10)] backdrop-blur-[8px]">
       <div className="flex items-center gap-[4px]">
         <SVGClient
           style={{ color: "currentColor" }}
