@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="animate-fade-in flex flex-col items-center h-[80%] my-auto w-full justify-between">
+      <section className="animate-fade-in flex flex-col items-center h-[85%] my-auto w-full justify-between">
         <div className="">
           <p className="text-center text-[.875rem] text-white mb-[8px]">
             Your Balance:

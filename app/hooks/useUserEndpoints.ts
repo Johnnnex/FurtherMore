@@ -16,7 +16,7 @@ const useUserEndpoints = () => {
       const data = response.data as INextResponse<IUserResponse>;
 
       userStore.setUser(data?.data?.user);
-      rewardStore.setPoints(data?.data?.rewards?.time_spent);
+      rewardStore.setPoints(parseFloat(data?.data?.rewards?.time_spent));
 
       callback(true);
     } catch (err) {

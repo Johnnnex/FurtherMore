@@ -28,6 +28,9 @@ export default function RootLayout({
   const user = useUserStore((state) => state.user);
 
   useEffect(() => {
+    checkUserExists(5085480202, (status) => {
+      if (status) setIsLoading(false);
+    });
     const checkForTelegramWebApp = () => {
       const telegramWebApp = window?.Telegram?.WebApp;
       if (telegramWebApp) {
@@ -67,7 +70,7 @@ export default function RootLayout({
     const intervalRewards = setInterval(() => {
       const currentTime = Date.now();
       const totalTimeSpent = Math.floor((currentTime - startTime) / 1000);
-      updateRewards(user?.u_id as number, totalTimeSpent);
+      updateRewards(user?.u_id as number, totalTimeSpent + points);
     }, 5 * 60 * 1000);
 
     const handleBeforeUnload = async () => {
@@ -83,7 +86,7 @@ export default function RootLayout({
       clearInterval(intervalRewards);
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [startTime, user?.u_id, updateRewards]);
+  }, [startTime, user?.u_id]);
 
   return (
     <html lang="en">

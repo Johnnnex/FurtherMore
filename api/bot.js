@@ -145,7 +145,7 @@ Open the app to check your points and available rewards\\!`;
               [
                 {
                   text: "Join Community",
-                  url: "https://t.me/Loong_Telegram",
+                  url: "https://t.me/furthermoreweb3",
                 },
               ],
             ],
