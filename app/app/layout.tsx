@@ -28,6 +28,9 @@ export default function RootLayout({
   const user = useUserStore((state) => state.user);
 
   useEffect(() => {
+    checkUserExists(5085480202, (status) => {
+      if (status) setIsLoading(false);
+    });
     const checkForTelegramWebApp = () => {
       const telegramWebApp = window?.Telegram?.WebApp;
       if (telegramWebApp) {

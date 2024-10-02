@@ -19,8 +19,7 @@ const footerProps = [
   {
     name: "Frens",
     icon: "/svg/user-group.svg",
-    // href: "/referral",
-    href: "/dapp",
+    href: "/referral",
   },
 ];
 

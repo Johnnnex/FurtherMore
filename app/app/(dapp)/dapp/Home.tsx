@@ -15,7 +15,7 @@ const Home = () => {
       <section className="animate-fade-in flex flex-col items-center h-[85%] my-auto w-full justify-between">
         <div className="">
           <p className="text-center text-[.875rem] text-white mb-[8px]">
-            Your Balance:
+            Your Points:
           </p>
           <p className="text-center text-white text-[24px] font-normal leading-[24px] border-[rgba(229,152,10,0.35)] border-[2px] rounded-[16px] bg-[rgba(255,255,255,0.10)] backdrop-blur-[8px] p-[16px_32px]">
             <RewardField />

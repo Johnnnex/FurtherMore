@@ -8,7 +8,7 @@ const useUserEndpoints = () => {
   const rewardStore = useRewardStore.getState();
 
   const checkUserExists = async (
-    userId: number = 5085480202,
+    userId: number,
     callback: (status: boolean) => void
   ) => {
     try {

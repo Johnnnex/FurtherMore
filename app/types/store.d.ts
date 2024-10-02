@@ -1,6 +1,7 @@
-import { IUser as IUserApi } from "./api";
+import { IFrensResponseTypes, IUser as IUserApi } from "./api";
 
 export interface IUser extends IUserApi {}
+export interface IFrens extends IFrensResponseTypes {}
 
 export interface IUserState {
   user: IUser | null;
@@ -22,4 +23,9 @@ export interface IRewardState {
   setAchievements: (achievements: string[]) => void;
   addAchievement: (achievement: string) => void;
   clearRewards: () => void;
+}
+
+export interface IFrensState {
+  frens: null | IFrens[];
+  setFrens: (frens: IFrens[]) => void;
 }

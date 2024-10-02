@@ -102,7 +102,7 @@ Open the app to check your points and available rewards\\!`;
         const { data: referrerData, _ } = await supabase
           .from("referral")
           .select("ref_count")
-          .eq("user", refCode)
+          .eq("user_id", refCode)
           .maybeSingle();
 
         if (
@@ -114,8 +114,8 @@ Open the app to check your points and available rewards\\!`;
           const { error: updateError } = await supabase
             .from("referral")
             .update({ ref_count: referrerData.ref_count + 1 })
-            .eq("user", refCode);
-
+            .eq("user_id", refCode);
+          console.log(updateError);
           if (updateError) {
             bot.sendMessage(
               chatId,
