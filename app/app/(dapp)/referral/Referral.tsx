@@ -115,7 +115,7 @@ It’s fun to see, and there are even more features coming soon! Join me, let’
               const encodedMessage = encodeURIComponent(referralMessage);
               const shareLink = `https://t.me/share/url?url=${encodedMessage}`;
 
-              window.open(shareLink);
+              window.location.href = shareLink;
               toggleDrawer(false);
             }}
             variant="outlined"
