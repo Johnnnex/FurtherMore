@@ -15,6 +15,15 @@
   }
 }
 
+/* Hide scrollbar for Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+}
+
 .clock {
   position: relative;
   width: 280px;
