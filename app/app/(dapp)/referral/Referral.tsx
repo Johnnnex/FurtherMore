@@ -14,7 +14,7 @@ const Referral = () => {
   const { getFrens } = useFrensEndpoints();
   const user = useUserStore((state) => state.user?.u_id);
   const frens = useFrensStore((state) => state.frens);
-  const [open, toggleDrawer] = useState(true);
+  const [open, toggleDrawer] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -115,7 +115,7 @@ It’s fun to see, and there are even more features coming soon! Join me, let’
               const encodedMessage = encodeURIComponent(referralMessage);
               const shareLink = `https://t.me/share/url?url=${encodedMessage}`;
 
-              window.open(shareLink, "_blank");
+              window.open(shareLink);
               toggleDrawer(false);
             }}
             variant="outlined"
