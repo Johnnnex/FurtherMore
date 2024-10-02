@@ -7,22 +7,20 @@ import SVGClient from "@/components/SVGClient";
 import useFrensEndpoints from "@/hooks/useFrensEndpoints";
 import useFrensStore from "@/store/frensStore";
 import useUserStore from "@/store/userStore";
-import React, { useEffect } from "react";
+import { Drawer } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 const Referral = () => {
   const { getFrens } = useFrensEndpoints();
   const user = useUserStore((state) => state.user?.u_id);
   const frens = useFrensStore((state) => state.frens);
+  const [open, toggleDrawer] = useState(true);
 
   useEffect(() => {
     if (!user) return;
     getFrens(user!);
   }, [user]);
 
-  useEffect(() => {
-    if (!frens) return;
-    console.log(frens[0]);
-  }, [frens]);
   return (
     <>
       <section className="animate-fade-in relative flex flex-col h-[85%] my-auto justify-between overflow-auto w-full">
@@ -85,9 +83,60 @@ const Referral = () => {
         </div>
         {/* Button at the bottom */}
         <div className="w-full flex sticky bottom-0 pb-[1px] justify-center mt-auto">
-          <Button onClick={() => console.log("hi")} name="Invite Frens" />
+          <Button onClick={() => toggleDrawer(true)} name="Invite Frens" />
         </div>
       </section>
+      <Drawer
+        open={open}
+        anchor="bottom"
+        PaperProps={{
+          sx: {
+            paddingBlock: "40px",
+            borderTopRightRadius: "1rem",
+            borderTopLeftRadius: "1rem",
+            bgcolor: "#242424",
+          },
+        }}
+        sx={{
+          "&.MuiDrawer-root": { bgcolor: "#FFFFFF1A" },
+        }}
+        onClose={() => toggleDrawer(false)}
+      >
+        <div className="flex gap-[1rem] items-center flex-col">
+          <Button
+            onClick={() => {
+              const botLink = `https://t.me/furthamore_bot?start=${user}`;
+
+              const referralMessage = `Hey! 👋 I’ve been using this cool bot on Telegram that tracks how much time you spend online—it's like having a nosy friend keeping tabs on you. 😂 
+Check it out here: ${botLink}
+            
+It’s fun to see, and there are even more features coming soon! Join me, let’s track our time together! ⏳`;
+
+              const encodedMessage = encodeURIComponent(referralMessage);
+              const shareLink = `https://t.me/share/url?url=${encodedMessage}`;
+
+              window.open(shareLink, "_blank");
+              toggleDrawer(false);
+            }}
+            variant="outlined"
+            name="Send in Telegram"
+          />
+          <Button
+            onClick={() => {
+              navigator.clipboard
+                .writeText("https://t.me/furthamore_bot?start=" + user)
+                .then(() => {
+                  toggleDrawer(false);
+                })
+                .catch(() => {
+                  toggleDrawer(false);
+                });
+            }}
+            variant="outlined"
+            name="Copy Link"
+          />
+        </div>
+      </Drawer>
     </>
   );
 };

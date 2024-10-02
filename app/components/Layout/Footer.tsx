@@ -11,10 +11,14 @@ const footerProps = [
     href: "/dapp",
   },
   {
+    name: "Tasks",
+    icon: "/svg/note.svg",
+    href: "/tasks",
+  },
+  {
     name: "Leaderboard",
     icon: "/svg/ranking.svg",
-    // href: "/leaderboard",
-    href: "/dapp",
+    href: "/leaderboard",
   },
   {
     name: "Frens",
